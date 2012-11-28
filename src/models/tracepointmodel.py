@@ -408,4 +408,4 @@ class TracepointModel(QAbstractTableModel):
         @param index: index of row that was clicked
         """
         tp = self.tracepoints[index.row()]
-        self.distObjects.tracepointwaveController.updateTracepointWaveView(tp.wave)
+        self.distObjects.tracepointwaveModel.updateTracepointWave(tp.wave)

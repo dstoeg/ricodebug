@@ -36,7 +36,7 @@ from controllers.watchcontroller import WatchController
 from datagraph.datagraphcontroller import DataGraphController
 from variables.variablepool import VariablePool
 from .stlvectorparser import StlVectorParser
-from controllers.tracepointwavecontroller import TracepointWaveController
+from models.tracepointwavemodel import TracepointWaveModel
 from .sessionmanager import SessionManager
 from helpers.actions import Actions
 from helpers.configstore import ConfigStore
@@ -88,7 +88,7 @@ class DistributedObjects:
 
         self.datagraphController = DataGraphController(self)
         self.stlvectorParser = StlVectorParser(self)
-        self.tracepointwaveController = TracepointWaveController(self)
+        self.tracepointwaveModel = TracepointWaveModel(self)
 
         self.miView = self.buildView(MiTraceView, "MI Trace")
 
