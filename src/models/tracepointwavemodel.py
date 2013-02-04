@@ -22,15 +22,16 @@
 #
 # For further information see <http://syscdbg.hagenberg.servus.at/>.
 
-from PyQt4.QtCore import Qt, QAbstractTableModel, QObject, QModelIndex
+from PyQt4.QtCore import Qt, QAbstractTableModel, QObject
 #from PyQt4 import QtGui
 from operator import attrgetter
 from helpers.svgdrawwaveforms import SvgDrawWaveform
-from datagraph.SVGImage import SVGImage
-from datagraph.svgview import SVGDataGraphVW
+from datagraph.svgimage import SVGImage
+from datagraph.svgvw import SVGDataGraphVW
 from StringIO import StringIO
-import traceback
+
 import logging
+
 
 class TracepointWaveDrawing(QObject):
 
@@ -48,8 +49,7 @@ class TracepointWaveDrawing(QObject):
         self.action = self.distributedObjects.actions.\
             getAddSVGToDatagraphAction(self.svg_image_wrapper,
                                        self.distributedObjects.
-                                       datagraphController.addSVG)
-
+                                       datagraphController.addVar)
 
     def refresh(self, no_waves):
         self.svg.refresh(no_waves)
@@ -71,7 +71,7 @@ class TracepointWaveModel(QAbstractTableModel):
 
     def __init__(self, distributedObjects):
         QAbstractTableModel.__init__(self)
-        
+
         self.supportedTypes = ["bool", "int", "float", "double"]
         self.distributedObjects = distributedObjects
         self.waveform = TracepointWaveDrawing(distributedObjects)
@@ -87,7 +87,7 @@ class TracepointWaveModel(QAbstractTableModel):
 
         # const column of waveform
         self.wavecolumn = 1
-        
+
         self.distributedObjects.signalProxy.\
             cleanupModels.connect(self.cleanUp)
 
